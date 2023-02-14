@@ -1,6 +1,4 @@
 import React from "react";
-// import PropTypes form 'prop-types';
-
 
 export default function Navbar(props) {
   return (
