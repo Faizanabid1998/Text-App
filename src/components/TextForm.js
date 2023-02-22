@@ -22,15 +22,14 @@ export default function TextForm(props) {
     setText(event.target.value);
   };
 
-  const handleCopy=()=>{  
-    let text =document.getElementById("myBox");
+  const handleCopy = () => {
+    let text = document.getElementById("myBox");
     text.select();
     navigator.clipboard.writeText(text.value);
     document.getSelection().removeAllRanges();
-    props.showAlert("copied to clipboard","success");
+    props.showAlert("copied to clipboard", "success");
   }
-
-
+  
   return (
     <>
       <div
@@ -52,16 +51,32 @@ export default function TextForm(props) {
             }}
           ></textarea>
         </div>
-        <button disabled={text.length===0} className="btn btn-primary mx-2 my-1" onClick={handleClick}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-2 my-1"
+          onClick={handleClick}
+        >
           Convert to uppercase
         </button>
-        <button disabled={text.length===0} className="btn btn-primary mx-2 my-1" onClick={handleloClick}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-2 my-1"
+          onClick={handleloClick}
+        >
           Convert to lower case
         </button>
-        <button disabled={text.length===0} className="btn btn-primary mx-2 my-1" onClick={handleClearClick}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-2 my-1"
+          onClick={handleClearClick}
+        >
           Clear text
         </button>
-        <button disabled={text.length===0} className="btn btn-primary mx-2 my-1" onClick={handleCopy}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-2 my-1"
+          onClick={handleCopy}
+        >
           Copy text
         </button>
       </div>
@@ -72,10 +87,21 @@ export default function TextForm(props) {
       >
         <h1 className="my-3">Summary</h1>
         <p>
-          Your text has {text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length}{" "}
-          characters
+          Your text has{" "}
+          {
+            text.split(" ").filter((element) => {
+              return element.length !== 0;
+            }).length
+          }{" "}
+          words and {text.length} characters
         </p>
-        <p>Minutes required to read: {0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length}</p>
+        <p>
+          Minutes required to read:{" "}
+          {0.008 *
+            text.split(" ").filter((element) => {
+              return element.length !== 0;
+            }).length}
+        </p>
         <h2>Preview</h2>
         <div className="mb-3">
           <textarea
