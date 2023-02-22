@@ -8,24 +8,24 @@ export default function About() {
       backgroundColor:'white'
     }
   )
-  const [btn, setBtn]=useState('Enable Dark mode')
+ // const [btn, setBtn]=useState('Enable Dark mode')
 
-  const toggleStyle=()=>{
-    if(myStlye.color==='black'){
-      setMyStyle({
-        color:'white',
-        backgroundColor:'black'
-      })
-      setBtn('Enable Light Mode')
-    }
-    else{
-      setMyStyle({
-        color:'black',
-        backgroundColor:'white'
-      })
-      setBtn('Enable Dark Mode')
-      }
-  }
+//  const toggleStyle=()=>{
+//     if(myStlye.color==='black'){
+//       setMyStyle({
+//         color:'white',
+//         backgroundColor:'black'
+//       })
+//       setBtn('Enable Light Mode')
+//     }
+//     else{
+//       setMyStyle({
+//         color:'black',
+//         backgroundColor:'white'
+//       })
+//       setBtn('Enable Dark Mode')
+//       }
+//   } 
   return (
     <>
     <div className='container' style={myStlye}>
@@ -69,11 +69,7 @@ export default function About() {
   </div>
 </div>
     </div>
-    <div className="container">
-        <button onClick={toggleStyle} type="button" className="btn btn-primary my-3">
-          {btn}
-        </button>
-      </div>
+
     </>
   )
 }

@@ -22,6 +22,15 @@ export default function TextForm(props) {
     setText(event.target.value);
   };
 
+  const handleCopy=()=>{  
+    let text =document.getElementById("myBox");
+    text.select();
+    navigator.clipboard.writeText(text.value);
+    document.getSelection().removeAllRanges();
+    props.showAlert("copied to clipboard","success");
+  }
+
+
   return (
     <>
       <div
@@ -33,24 +42,27 @@ export default function TextForm(props) {
 
           <textarea
             className="form-control"
-            id="exampleFormControlTextarea1"
+            id="myBox"
             rows="8"
             value={text}
             onChange={handleChange}
             style={{
-              backgroundColor: props.mode === "dark" ? "grey" : "white",
+              backgroundColor: props.mode === "dark" ? "#13466e" : "white",
               color: props.mode === "dark" ? "white" : "#042743",
             }}
           ></textarea>
         </div>
-        <button className="btn btn-primary mx-2" onClick={handleClick}>
+        <button disabled={text.length===0} className="btn btn-primary mx-2 my-1" onClick={handleClick}>
           Convert to uppercase
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleloClick}>
+        <button disabled={text.length===0} className="btn btn-primary mx-2 my-1" onClick={handleloClick}>
           Convert to lower case
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleClearClick}>
+        <button disabled={text.length===0} className="btn btn-primary mx-2 my-1" onClick={handleClearClick}>
           Clear text
+        </button>
+        <button disabled={text.length===0} className="btn btn-primary mx-2 my-1" onClick={handleCopy}>
+          Copy text
         </button>
       </div>
 
@@ -60,10 +72,10 @@ export default function TextForm(props) {
       >
         <h1 className="my-3">Summary</h1>
         <p>
-          Your text has {text.split(" ").length} words and {text.length}{" "}
+          Your text has {text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length}{" "}
           characters
         </p>
-        <p>minutes required to read: {0.008 * text.split(" ").length}</p>
+        <p>Minutes required to read: {0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length}</p>
         <h2>Preview</h2>
         <div className="mb-3">
           <textarea
@@ -73,7 +85,7 @@ export default function TextForm(props) {
             value={text.length > 0 ? text : "Enter some text to display"}
             onChange={handleChange}
             style={{
-              backgroundColor: props.mode === "dark" ? "grey" : "white",
+              backgroundColor: props.mode === "dark" ? "#13466e" : "white",
               color: props.mode === "dark" ? "white" : "#042743",
             }}
           ></textarea>
